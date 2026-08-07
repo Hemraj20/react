@@ -6,7 +6,7 @@ import Footer from "./components/Footer"
 import Header from "./components/Header"
 import Hero from "./components/Hero"
 import PasswordHideShow from "./components/PasswordHideShow"
-import Qna from "./components/QNA"
+import Qna from "./components/Qna"
 import {BrowserRouter as Router,Route,Routes} from "react-router-dom";
 
 const Landing = ()=>{
