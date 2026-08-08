@@ -22,7 +22,7 @@ const PasswordHideShow = () => {
         </h1>
 
         <p className="text-center text-gray-500 mt-2 mb-8">
-          Show & Hide Password
+          
         </p> 
 
         {/* Username */}
