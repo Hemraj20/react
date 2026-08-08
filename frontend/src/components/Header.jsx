@@ -23,7 +23,7 @@ const Header = () => {
             <img src={logo} alt="Logo" className='"h-10 w-10' />
             </Link>
           <h1 className="text-2xl font-bold text-blue-600">
-            My Project
+          Pure Luxe Cosmetics
           </h1>
         
         </div>
