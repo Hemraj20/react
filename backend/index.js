@@ -1,24 +1,21 @@
 import express from "express";
 import dotenv from "dotenv";
 dotenv.config();
-
-
 import { productRoute } from "./routes/product.route.js";
-import { db } from "./config/db.js";
+import  db  from "./config/db.js";
 import { userRoute } from "./routes/user.route.js";
 import bodyParser from "body-parser";
+import cookieParser from "cookie-parser";
 
 const app = express();
+// to send body data to req.body
 app.use(bodyParser.json())
+
+// to send token req.cookies
+app.use(cookieParser())
 const PORT = 3000;
 
-db.getConnection((err)=>{
-    if(err){
-        return console.log("Database not connected", err.message);
-    }else{
-    console.log("Database connected")
-    }
-})
+
 app.use("/api/v1/product",productRoute)
 app.use("/api/v1/user",userRoute)
 

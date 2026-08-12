@@ -1,19 +1,7 @@
-export const product = (req, res)=>{
-    res.json({
-        message: "Product Get Successfully",
-        status:200,
-        products:[
-            {
-                id: 1,
-                name: "laptop",
-                price:5000,
-            },
-            {
-                id: 2,
-                name: "mobile",
-                price: 20000,
-            },
-        ],
-    })
+export const createProduct = async (req, res) => {
+  try {
+    res.send("Teri m**ka bhosda aag");
+  } catch (error) {
+    res.send(error);
+  }
 };
-
