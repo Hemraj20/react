@@ -9,6 +9,7 @@ import Qna from "./components/Qna"
 import {BrowserRouter as Router,Route,Routes} from "react-router-dom";
 import Services from "./components/Services"
 import Contacts from "./components/Contacts"
+import Product from "./components/Product"
 
 const Landing = ()=>{
   return(
@@ -35,6 +36,7 @@ const App = () => {
     <Route path="/logging"element={<PasswordHideShow/>}/>
     <Route path="/Services"element={<Services/>}/>
     <Route path="/Contact"element={<Contacts/>}/>
+    <Route path="/product"element={<Product/>}/>
     
     {/* Hiiii */}
 

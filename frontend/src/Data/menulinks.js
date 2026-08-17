@@ -20,6 +20,11 @@ const menu = [
     link:"/Contact"
     },
     {
+      id:4,
+    title: "Product" ,
+    link:"/product"
+    },
+    {
       id:5,
     title: "Apis" ,
     link:"/Api"

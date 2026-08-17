@@ -9,7 +9,7 @@ export const registerUser = async (req, res) => {
   if (!username || !phone_no || !email || !password || !Account_no) {
     return res.status(400).json({
       message: "Hi",
-    });
+    }); 
   }
 
   const hasPassword = await bcrypt.hash(password, 10);
@@ -73,3 +73,9 @@ export const LoginUser = async (req, res) => {
     token: token,
   });
 };
+
+
+export const logoutUser = (req,res)=>{
+  res.clearCookie("token")
+  res.json({message:"Logout success"})
+}
