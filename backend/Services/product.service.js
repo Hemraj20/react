@@ -37,30 +37,24 @@ export const removeProduct = async (pid) => {
   return deleted;
 };
 
-export const updateProduct = async (
-  name,
-  slug,
-  description,
-  price,
-  rating,
-  stock,
-  discount,
-  brand,
-  id,
-) => {
-  const query =
-    "UPDATE products SET name = ?, slug=?, description = ?, price = ?, rating = ?, stock = ?, discount = ?, brand = ? WHERE id = ?";
-  const updated = await db.execute(query, [
-    name,
-    slug,
-    description,
-    price,
-    rating,
-    stock,
-    discount,
-    brand,
-    id,
-  ]);
+export const updateProduct = async (id, fields) => {
+  //Get column names from the fields object eg["price","stock"]
 
-  return updated;
+  // [name,price]
+  const columns = Object.keys(fields);
+
+  //"hari",600
+  const values = Object.values(fields);
+
+  // [name,price]
+  // e.g "price=?,stock=?'
+  const setClause = columns.map((col) => `${col}=?`).join(",");
+  const query = `UPDATE products SET ${setClause} WHERE id=?`;
+  const [result] = await db.query(query, [...values, id]);
+  return result;
+};
+
+export const generateProductBySlugServices = async (slug) => {
+  const [rows] = await db.query("SELECT * FROM products WHERE slug=?", [slug]);
+  return rows[0];
 };

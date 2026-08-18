@@ -16,9 +16,11 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 const PORT = 3000;
 
+// TO know backend where frontend is
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: process.env.FRONTEND_URL,
+    credentials: true,
   }),
 );
 app.use("/api/v1/product", productRoute);

@@ -1,5 +1,6 @@
 import {
   createProducts,
+  generateProductBySlugServices,
   getALlProducts,
   removeProduct,
   updateProduct,
@@ -73,30 +74,32 @@ export const deleteProduct = async (req, res) => {
 // Private
 export const updatedProduct = async (req, res) => {
   try {
-    const id = req.params.id;
-    const { name, description, price, rating, stock, discount, brand } =
-      req.body;
+    const id = Number(req.params.id);
+    const fields = req.body;
+    if (Object.keys(fields).length === 0)
+      return res.status(400).json({ message: "Enter the object field" });
+    if (fields.name) fields.slug = generateSlug(fields.name);
 
-    const slug = generateSlug(name);
+    const updated = await updateProduct(id, fields);
 
-    const updated = await updateProduct(
-      name,
-      slug,
-      description,
-      price,
-      rating,
-      stock,
-      discount,
-      brand,
-      id,
-    );
-
-    if (updated[0].affectedRows === 0) {
+    if (updated.affectedRows === 0) {
       return res.json({ message: "Product updated successfully!" });
     }
     res.status(200).json({ message: "Item updated" });
   } catch (error) {
     console.log(error);
     res.send("something is wrong ");
+  }
+};
+
+export const getProductBySlug = async (req, res) => {
+  try {
+    const { productSlug } = req.params;
+
+    const product = await generateProductBySlugServices(productSlug);
+    if (!product) return res.status(400).json({ message: "Product not found" });
+    res.status(200).json({ message: product });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
   }
 };

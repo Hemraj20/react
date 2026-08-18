@@ -10,6 +10,7 @@ import {BrowserRouter as Router,Route,Routes} from "react-router-dom";
 import Services from "./components/Services"
 import Contacts from "./components/Contacts"
 import Product from "./components/Product"
+import ProductDetails from "./components/ProductDetails"
 
 const Landing = ()=>{
   return(
@@ -37,6 +38,7 @@ const App = () => {
     <Route path="/Services"element={<Services/>}/>
     <Route path="/Contact"element={<Contacts/>}/>
     <Route path="/product"element={<Product/>}/>
+    <Route path="/products/:slug"element={<ProductDetails/>}/>
     
     {/* Hiiii */}
 
